@@ -14,6 +14,7 @@ echo "as";
         // Komentarz
         # to też komentarz
 // a tu nowa linia GIT
+        //następna zmiana GIT
         /*
           Wiele wierszy
           komentarza
