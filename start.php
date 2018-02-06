@@ -13,7 +13,7 @@ echo "as";
 
         // Komentarz
         # to też komentarz
-
+// a tu nowa linia GIT
         /*
           Wiele wierszy
           komentarza
