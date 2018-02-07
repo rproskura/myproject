@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            .error {
+                color: red;
+                border:1px solid red;
+                width:200px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <?php
+        $error = [];
+        $fname = "";
+        $lname = "";
+        $gender = "";
+        if (isset($_GET["submit"])) {
+            $fname = $_GET["firstname"];
+            $lname = $_GET["lastname"];
+            if (isset($_GET["gender"]))
+                $gender = $_GET["gender"];
+            
+            if (empty($fname))
+                array_push($error, "Imię");
+            if (empty($lname))
+                array_push($error, "Nazwisko");
+            if (empty($gender))
+                array_push($error, "Płeć");
+
+            if (count($error) > 0) {
+                ?>
+                <div class="error">
+                    <?php
+
+                    function pokazBledy($v, $k) {
+                        echo "<H2>Pole $v jest nieuzupełnione.</H2>";
+                    }
+
+                    array_walk($error, "pokazBledy");
+                    ?>
+                </div>        
+                <?php
+            }
+        }
+
+        if (count($error) == 0 && isset($_GET["submit"])) {
+
+            echo "Wysłano dane:<br>";
+            ?>
+            <div class="moja">Imię: <?php echo $fname ?></div>
+            <br>
+            <?php
+            echo "Nazwisko: " . $lname . "<BR>";
+            echo "Płeć: " . $gender . "<BR>";
+        } else {
+            ?>
+            <form method="get" action="formularz.php">
+                Imię: 
+                <input type="text" name="firstname">
+                <br>
+                Nazwisko:
+                <input type="text" name="lastname">
+                <BR>
+                Płeć:
+                <br>
+                Kobieta <input type="radio" name="gender"  value="Kobieta">
+                <BR>
+                Mężczyzna <input type="radio" name="gender" value="Mężczyzna">
+                <input name='error' type='hidden'>
+                <button type="submit" name="submit">Wyślij</button>
+            </form>
+            <?php
+        }
+        ?>
+    </body>
+</html>
+
+

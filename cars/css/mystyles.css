@@ -1,0 +1,21 @@
+body{
+    margin: 0 auto;
+}
+.main {
+    width:80%;
+    border:1px solid gray;
+    padding:8px;
+    margin:  20px auto;
+    text-align: center;
+}
+
+.samochody{
+    display:none;
+}
+.footable .caret{
+    border:none;
+}
+html .footable-filtering-search {
+    text-align: right; 
+    width:100%;
+}

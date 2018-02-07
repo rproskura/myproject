@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script>
+            function showHint(str) {
+                if (str.length == 0) {
+                    document.getElementById("txtHint").innerHTML = "";
+                    return;
+                } else {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("txt").innerHTML =
+                                    this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET", "names.php?litera=" + str, true);
+                    xmlhttp.send();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <p><b>Zacznij wpisywać imię:</b></p>
+        <form> 
+            Imię: <input type="text" onkeyup="showHint(this.value)">
+        </form>
+        <p>Podpowiedź: <span id="txt"></span></p>
+
+
+        <form>
+            Jakie auto?<input type="text" onkeyup="findCar(this.value)"/>
+        </form>
+        <p>Szukane auto: <span id="car"></span></p>
+        <script>
+            function findCar(txt) {
+                if (txt.length == 0) {
+                    document.querySelector("#car").innerHTML = '';
+                } else {
+                    var ajax = new XMLHttpRequest();
+                    ajax.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.querySelector("#car").innerHTML =
+                                    this.responseText;
+                            console.log(this.responseText);
+                        }
+                    };
+                    ajax.open("GET", "cars.php?find=" + txt, true);
+                    ajax.send();
+                }
+            }
+        </script>
+    </body>
+</html>
